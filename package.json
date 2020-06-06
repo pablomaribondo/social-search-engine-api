@@ -38,6 +38,7 @@
   "dependencies": {
     "fastify": "^2.14.1",
     "got": "^11.1.4",
+    "querystring": "^0.2.0",
     "se-scraper": "^1.5.7"
   },
   "devDependencies": {

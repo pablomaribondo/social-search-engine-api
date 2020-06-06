@@ -1,4 +1,5 @@
 const instagramProfiles = require('./Controllers/InstagramProfileController');
+const twitterProfiles = require('./Controllers/TwitterProfileController');
 
 async function routes(fastify) {
   fastify.get('/', (request, reply) => {
@@ -18,14 +19,26 @@ async function routes(fastify) {
       },
     },
     handler: async (request, reply) => {
-      if (request.query.social === 'instagram' && request.query.search) {
-        return instagramProfiles.getAll(request, reply);
+      const { search, social } = request.query;
+
+      if (search) {
+        switch (social) {
+          case 'instagram':
+            return instagramProfiles.getAll(request, reply);
+          case 'twitter':
+            return twitterProfiles.getAll(request, reply);
+          default:
+            return reply
+              .code(422)
+              .header('Content-Type', 'application/json; charset=utf-8')
+              .send({ code: 422, data: 'Rede social inválida!' });
+        }
       }
 
       return reply
         .code(422)
         .header('Content-Type', 'application/json; charset=utf-8')
-        .send({ code: 422, data: 'Rede social inválida!' });
+        .send({ code: 422, data: 'Busca inválida!' });
     },
   });
 }

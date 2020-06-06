@@ -1,21 +1,19 @@
 const googleScraper = require('../Helpers/google-scraper');
-const instagramScraper = require('../Helpers/instagram-scraper');
+const twitterScraper = require('../Helpers/twitter-scraper');
 
 /**
- * Função para retornar os perfis do Instagram
+ * Função para retornar os perfis do Twitter
  * @param {Object} request - Pedido do cliente
  * @param {Reply} reply - Resposta para o cliente
- * @returns {Object} Perfis do Instagram
+ * @returns {Object} Perfis do Twitter
  */
 async function getAll(request, reply) {
   const links = await googleScraper.getLinks(request.query);
-  const profiles = await instagramScraper.getProfiles(request, links);
+  const profiles = await twitterScraper.getProfiles(request, links);
 
   Promise.all(profiles)
     .then((data) => {
-      const requiredData = data.filter((element) => element !== null && element !== undefined);
-
-      requiredData.sort((a, b) => {
+      const sortedData = data.sort((a, b) => {
         if (a.followers > b.followers) {
           return -1;
         }
@@ -28,7 +26,7 @@ async function getAll(request, reply) {
       return reply
         .code(200)
         .header('Content-Type', 'application/json; charset=utf-8')
-        .send({ code: 200, data: requiredData });
+        .send({ code: 200, data: sortedData });
     })
     .catch((error) => {
       return reply
