@@ -1,5 +1,7 @@
 const instagramProfiles = require('./Controllers/InstagramProfileController');
+const tiktokProfiles = require('./Controllers/TiktokProfileController');
 const twitterProfiles = require('./Controllers/TwitterProfileController');
+const youtubeProfiles = require('./Controllers/YoutubeProfileController');
 
 async function routes(fastify) {
   fastify.get('/', (request, reply) => {
@@ -16,6 +18,7 @@ async function routes(fastify) {
       querystring: {
         search: { type: 'string' },
         social: { type: 'string' },
+        is_premium: { type: 'boolean' },
       },
     },
     handler: async (request, reply) => {
@@ -25,8 +28,12 @@ async function routes(fastify) {
         switch (social) {
           case 'instagram':
             return instagramProfiles.getAll(request, reply);
+          case 'tiktok':
+            return tiktokProfiles.getAll(request, reply);
           case 'twitter':
             return twitterProfiles.getAll(request, reply);
+          case 'youtube':
+            return youtubeProfiles.getAll(request, reply);
           default:
             return reply
               .code(422)

@@ -37,13 +37,13 @@ module.exports.getProfiles = async (request, links) => {
           followers: profile.edge_followed_by.count,
           following: profile.edge_follow.count,
           externalUrl: profile.external_url,
-          // id: profile.id,
+          id: profile.id,
           isPrivate: profile.is_private,
           isVerified: profile.is_verified,
           isBusiness: profile.is_business_account,
           profilePictureUrl: profile.profile_pic_url_hd,
-          // likeAverage: profile.likeAverage.toFixed(2),
-          // engagement: ((profile.likeAverage / profile.edge_followed_by.count) * 100).toFixed(2),
+          likeAverage: profile.likeAverage.toFixed(2),
+          engagement: ((profile.likeAverage / profile.edge_followed_by.count) * 100).toFixed(2),
         };
       }
 

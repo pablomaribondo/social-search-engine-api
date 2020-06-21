@@ -1,19 +1,19 @@
 const googleScraper = require('../Helpers/google-scraper');
-const twitterScraper = require('../Helpers/twitter-scraper');
+const tiktokScraper = require('../Helpers/tiktok-scraper');
 
 /**
- * Função para retornar os perfis do Twitter
+ * Função para retornar os perfis do Tiktok
  * @param {Object} request - Pedido do cliente
  * @param {Reply} reply - Resposta para o cliente
- * @returns {Object} Perfis do Twitter
+ * @returns {Object} Perfis do Tiktok
  */
 async function getAll(request, reply) {
   const links = await googleScraper.getLinks(request.query);
-  const profiles = await twitterScraper.getProfiles(request, links);
+  const profiles = await tiktokScraper.getProfiles(request, links);
 
   Promise.all(profiles)
     .then((data) => {
-      const requiredData = data.filter((element) => element !== null);
+      const requiredData = data.filter((element) => element !== null && element !== undefined);
 
       requiredData.sort((a, b) => {
         if (a.followers > b.followers) {
