@@ -49,7 +49,7 @@ async function getAll(request, reply) {
         profilePictureUrl: element.snippet.thumbnails.default.url,
         viewCount: statistics.viewCount,
         subscriberCount: statistics.subscriberCount,
-        videoCount: statistics.viewCount,
+        videoCount: statistics.videoCount,
         url: `https://www.youtube.com/channel/${id}`,
       };
     });
