@@ -27,6 +27,9 @@
       "git add"
     ]
   },
+  "engines": {
+    "node": "14.x"
+  },
   "keywords": [
     "node",
     "api",
