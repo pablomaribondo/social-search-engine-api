@@ -1,6 +1,7 @@
 require('dotenv').config();
 const fastify = require('fastify')({
-  logger: process.env.NODE_ENV === 'development',
+  // logger: process.env.NODE_ENV === 'development',
+  logger: true,
 });
 
 fastify.register(require('fastify-cors'));

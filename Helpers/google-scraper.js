@@ -6,13 +6,41 @@ module.exports.getLinks = async (query) => {
 
   const socialRef = {
     instagram(keywordsQuery) {
-      return `site:instagram.com -inurl:/p/ -inurl:/tags/ -inurl:/explore/ -inurl:/channel/ -inurl:/stories/ -inurl:/tv/ -inurl:/feed/ ${keywordsQuery}`;
+      return `
+        site:instagram.com 
+        -inurl:/p/ 
+        -inurl:/tags/ 
+        -inurl:/explore/ 
+        -inurl:/channel/ 
+        -inurl:/stories/ 
+        -inurl:/tv/ 
+        -inurl:/feed/ 
+        ${keywordsQuery}`;
     },
     tiktok(keywordsQuery) {
-      return `site:www.tiktok.com -inurl:/tag/ -inurl:/share/ -inurl:/music/ -inurl:/video/ ${keywordsQuery}`;
+      return `
+        site:www.tiktok.com 
+        -inurl:/tag/ 
+        -inurl:/share/ 
+        -inurl:/music/ 
+        -inurl:/video/ 
+        ${keywordsQuery}
+      `;
     },
     twitter(keywordsQuery) {
-      return `site:twitter.com -inurl:/hashtag/ -inurl:/status/ -inurl:/moments/ -inurl:/statuses/ -inurl:/events/ -inurl:/media/ -inurl:/developer.twitter.com/ -inurl:/help.twitter.com/ ${keywordsQuery}`;
+      return `
+        site:twitter.com 
+        -inurl:/hashtag/ 
+        -inurl:/status/ 
+        -inurl:/moments/ 
+        -inurl:/statuses/ 
+        -inurl:/events/ 
+        -inurl:/media/ 
+        -inurl:/developer.twitter.com/ 
+        -inurl:/help.twitter.com/ 
+        -inurl:/marketing.twitter.com/ 
+        ${keywordsQuery}
+      `;
     },
   };
 
