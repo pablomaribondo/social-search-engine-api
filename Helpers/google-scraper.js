@@ -12,7 +12,7 @@ module.exports.getLinks = async (query) => {
       return `site:www.tiktok.com -inurl:/tag/ -inurl:/share/ -inurl:/music/ -inurl:/video/ ${keywordsQuery}`;
     },
     twitter(keywordsQuery) {
-      return `site:twitter.com -inurl:/hashtag/ -inurl:/status/ -inurl:/moments/ -inurl:/statuses/ -inurl:/events/ -inurl:/media/ ${keywordsQuery}`;
+      return `site:twitter.com -inurl:/hashtag/ -inurl:/status/ -inurl:/moments/ -inurl:/statuses/ -inurl:/events/ -inurl:/media/ -inurl:/developer.twitter.com/ -inurl:/help.twitter.com/ ${keywordsQuery}`;
     },
   };
 
