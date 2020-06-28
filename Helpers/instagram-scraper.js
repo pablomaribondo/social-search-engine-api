@@ -58,7 +58,7 @@ module.exports.getProfiles = async (request, links) => {
                   2
                 ),
               };
-              console.log(formattedProfile);
+              request.log.info(formattedProfile);
               resolve(formattedProfile);
             } else {
               resolve(null);
@@ -71,7 +71,7 @@ module.exports.getProfiles = async (request, links) => {
       });
     };
 
-    curl.on('error', (error) => request.log.info(error));
+    curl.on('error', (error) => request.log.trace(error));
     curl.perform();
 
     return scrape();
