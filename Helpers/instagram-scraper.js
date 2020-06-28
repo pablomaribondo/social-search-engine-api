@@ -1,18 +1,18 @@
 const { Curl } = require('node-libcurl');
 
 module.exports.getProfiles = async (request, links) => {
-  console.log(links);
   return links.map(async (element) => {
     const curl = new Curl();
 
     curl.setOpt('URL', element);
     curl.setOpt(Curl.option.FOLLOWLOCATION, true);
+    curl.setOpt(Curl.option.HTTPHEADER, [
+      'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36',
+    ]);
 
     const scrape = () => {
       return new Promise((resolve) => {
         curl.on('end', (statusCode, data) => {
-          request.log.info(statusCode);
-          request.log.info(data);
           const match = data.match(
             /<script type="text\/javascript">window\._sharedData\s?=(.+);<\/script>/
           );
