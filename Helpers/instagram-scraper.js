@@ -1,6 +1,7 @@
 const { Curl } = require('node-libcurl');
 
 module.exports.getProfiles = async (request, links) => {
+  console.log(links);
   return links.map(async (element) => {
     const curl = new Curl();
 
@@ -57,7 +58,7 @@ module.exports.getProfiles = async (request, links) => {
                   2
                 ),
               };
-
+              console.log(formattedProfile);
               resolve(formattedProfile);
             } else {
               resolve(null);
