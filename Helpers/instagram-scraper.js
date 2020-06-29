@@ -12,8 +12,7 @@ module.exports.getProfiles = async (request, links) => {
 
     const scrape = () => {
       return new Promise((resolve) => {
-        curl.on('end', (statusCode, data, headers) => {
-          console.log(headers);
+        curl.on('end', (statusCode, data) => {
           const match = data.match(
             /<script type="text\/javascript">window\._sharedData\s?=(.+);<\/script>/
           );
